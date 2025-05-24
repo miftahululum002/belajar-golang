@@ -74,3 +74,37 @@ func CreateUser(c *gin.Context) {
 	})
 
 }
+
+func FindUserById(c *gin.Context) {
+
+	// Ambil ID user dari parameter URL
+	id := c.Param("id")
+
+	// Inisialisasi user
+	var user models.User
+
+	// Cari user berdasarkan ID
+	if err := database.DB.First(&user, id).Error; err != nil {
+		c.JSON(http.StatusNotFound, structs.ErrorResponse{
+			Success: false,
+			Message: "User not found",
+			Errors:  helpers.TranslateErrorMessage(err),
+		})
+		return
+	}
+
+	// Kirimkan response sukses dengan data user
+	c.JSON(http.StatusOK, structs.SuccessResponse{
+		Success: true,
+		Message: "User Found",
+		Data: structs.UserResponse{
+			Id:        user.Id,
+			Name:      user.Name,
+			Username:  user.Username,
+			Email:     user.Email,
+			CreatedAt: user.CreatedAt.Format("2006-01-02 15:04:05"),
+			UpdatedAt: user.UpdatedAt.Format("2006-01-02 15:04:05"),
+		},
+	})
+
+}
