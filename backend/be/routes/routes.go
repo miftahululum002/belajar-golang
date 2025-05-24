@@ -13,6 +13,7 @@ func SetupRouter() *gin.Engine {
 
 	// route register
 	router.POST("/api/register", controllers.Register)
+	router.POST("/api/login", controllers.Login)
 
 	return router
 }
