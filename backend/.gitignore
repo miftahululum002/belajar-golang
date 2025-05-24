@@ -1,0 +1,48 @@
+tmp
+.env
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of `go build`
+/bin/
+/build/
+
+# Dependency directories (if using Go modules)
+vendor/
+
+# Go workspace file (if any)
+go.work
+go.work.sum
+
+# Logs
+*.log
+
+# IDE/editor configs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Air (live reload tool)
+/tmp/
+.air
+# .air.toml
+
+# Environment config
+.env
+.env.* # Ignore .env.production, .env.development, etc.
+
+# Test coverage
+coverage.out
+
+# Git hooks (optional)
+.git/hooks/
