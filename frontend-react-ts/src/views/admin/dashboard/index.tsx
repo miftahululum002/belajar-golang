@@ -8,10 +8,8 @@ import SidebarMenu from '../../../components/SidebarMenu';
 import { useAuthUser } from '../../../hooks/auth/useAuthUser';
 
 const Dashboard: FC = () => {
-
     // get user from useAuthUser
     const user = useAuthUser();
-
     return (
         <div className="container mt-5 mb-5">
             <div className="row">
@@ -19,13 +17,11 @@ const Dashboard: FC = () => {
                     <SidebarMenu />
                 </div>
                 <div className="col-md-9">
-                    <div className="card border-0 rounded-4 shadow-sm">
-                        <div className="card-header">
-                            DASHBOARD
-                        </div>
+                    <div className="card border-0 shadow-sm">
+                        <div className="card-header">Dashboard</div>
                         <div className="card-body">
                             {user ? (
-                                <p>Selamat datang, <strong>{user.name}</strong>!</p>
+                                <p>Selamat datang, <b>{user.name}</b>!</p>
                             ) : (
                                 <p>Kamu belum login.</p>
                             )}

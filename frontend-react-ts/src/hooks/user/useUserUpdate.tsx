@@ -4,8 +4,6 @@ import { useMutation } from '@tanstack/react-query';
 //import service API
 import Api from '../../services/api';
 
-// import js-cookie
-import Cookies from 'js-cookie';
 
 //interface UserRequest untuk update
 interface UserRequest {
@@ -20,16 +18,8 @@ export const useUserUpdate = () => {
     return useMutation({
         // Mutation untuk update user
         mutationFn: async ({ id, data }: { id: number, data: UserRequest }) => {
-            // Ambil token dari cookies
-            const token = Cookies.get('token');
-
             // Gunakan service API untuk melakukan update user
-            const response = await Api.put(`/api/users/${id}`, data, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
+            const response = await Api.put(`/api/users/${id}`, data);
             // Mengembalikan response data
             return response.data;
         }

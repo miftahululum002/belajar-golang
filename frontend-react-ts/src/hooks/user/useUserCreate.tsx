@@ -4,9 +4,6 @@ import { useMutation } from '@tanstack/react-query';
 //import service API
 import Api from '../../services/api';
 
-// import js-cookie
-import Cookies from 'js-cookie';
-
 //interface UserRequest
 interface UserRequest {
     name: string;
@@ -21,16 +18,8 @@ export const useUserCreate = () => {
 
         // mutation untuk create user
         mutationFn: async (data: UserRequest) => {
-
-            //get token from cookies
-            const token = Cookies.get('token');
-
             //menggunakan service API untuk register
-            const response = await Api.post('/api/users', data, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            const response = await Api.post('/api/users', data);
 
             //mengembalikan response data
             return response.data;

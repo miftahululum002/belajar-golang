@@ -3,10 +3,6 @@ import { useQuery } from '@tanstack/react-query';
 
 //import service Api
 import Api from '../../services/api';
-
-// import js-cookie
-import Cookies from 'js-cookie';
-
 //interface User
 export interface User {
     id: number;
@@ -25,16 +21,8 @@ export const useUserById = (id: number) => {
 
         //query function
         queryFn: async () => {
-
-            //get token from cookies
-            const token = Cookies.get('token');
-
             //get user by id from api
-            const response = await Api.get(`/api/users/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            const response = await Api.get(`/api/users/${id}`);
 
             //return data
             return response.data.data as User;

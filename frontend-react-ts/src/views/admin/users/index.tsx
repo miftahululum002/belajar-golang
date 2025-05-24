@@ -42,10 +42,10 @@ const UsersIndex: FC = () => {
                     <SidebarMenu />
                 </div>
                 <div className="col-md-9">
-                    <div className="card border-0 rounded-4 shadow-sm">
+                    <div className="card border-0 rounded-0 shadow-sm">
                         <div className="card-header d-flex justify-content-between align-items-center">
-                            <span>USERS</span>
-                            <Link to="/admin/users/create" className="btn btn-sm btn-success rounded-4 shadow-sm border-0">ADD USER</Link>
+                            <span>Data User</span>
+                            <Link to="/admin/users/create" className="btn btn-sm btn-primary shadow-sm border-0">Tambah Data</Link>
                         </div>
                         <div className="card-body">
 
@@ -64,10 +64,10 @@ const UsersIndex: FC = () => {
                             <table className="table table-bordered">
                                 <thead className="bg-dark text-white">
                                     <tr>
-                                        <th scope="col">Full Name</th>
+                                        <th scope="col">Nama</th>
                                         <th scope="col">Username</th>
-                                        <th scope="col">Email Address</th>
-                                        <th scope="col" style={{ width: "20%" }}>Actions</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col" style={{ width: "20%" }}>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,10 +78,13 @@ const UsersIndex: FC = () => {
                                                 <td>{user.username}</td>
                                                 <td>{user.email}</td>
                                                 <td className="text-center">
-                                                    <Link to={`/admin/users/edit/${user.id}`} className="btn btn-sm btn-primary rounded-4 shadow-sm border-0 me-2">EDIT</Link>
-                                                    <button onClick={() => handleDelete(user.id)} disabled={isPending} className="btn btn-sm btn-danger rounded-4 shadow-sm border-0">
-                                                        {isPending ? 'DELETING...' : 'DELETE'}
-                                                    </button>
+                                                    <div className="btn-group">
+                                                        <Link to={`/admin/users/edit/${user.id}`} className="btn btn-sm btn-primary shadow-sm border-0">Edit</Link>
+                                                        <button onClick={() => handleDelete(user.id)} disabled={isPending} className="btn btn-sm btn-danger shadow-sm border-0">
+                                                            {isPending ? 'Sedang Menghapus...' : 'Hapus'}
+                                                        </button>
+                                                    </div>
+
                                                 </td>
                                             </tr>
                                         ))
