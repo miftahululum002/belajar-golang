@@ -2,12 +2,15 @@ package main
 
 import (
 	"backend/be/be/config"
+	"backend/be/be/database"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	config.LoadEnv()
+
+	database.InitDB()
 	//inisialiasai Gin
 	router := gin.Default()
 
