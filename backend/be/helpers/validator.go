@@ -46,6 +46,9 @@ func TranslateErrorMessage(err error) map[string]string {
 			if strings.Contains(err.Error(), "email") {
 				errorsMap["Email"] = "Email already exists" // Pesan error jika email sudah ada
 			}
+			if strings.Contains(err.Error(), "code") {
+				errorsMap["Code"] = "Code already exists"
+			}
 		} else if err == gorm.ErrRecordNotFound {
 			// Jika data yang dicari tidak ditemukan di database
 			errorsMap["Error"] = "Record not found"
