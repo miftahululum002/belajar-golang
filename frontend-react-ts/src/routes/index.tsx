@@ -21,6 +21,11 @@ import Dashboard from "../views/admin/dashboard/index.tsx";
 import UsersIndex from "../views/admin/users/index.tsx";
 import UsersCreate from '../views/admin/users/create.tsx';
 import UsersEdit from '../views/admin/users/edit.tsx';
+
+// product routes
+import BooksIndex from '../views/admin/books/index.tsx';
+import BooksCreate from '../views/admin/books/create.tsx';
+import BooksEdit from '../views/admin/books/edit.tsx';
 export default function AppRoutes() {
 
     // Menggunakan useContext untuk mendapatkan nilai dari AuthContext
@@ -58,6 +63,17 @@ export default function AppRoutes() {
             } />
             <Route path="/admin/users/edit/:id" element={
                 isAuthenticated ? <UsersEdit /> : <Navigate to="/login" replace />
+            } />
+
+            {/* route "/admin/books" */}
+            <Route path="/admin/books" element={
+                isAuthenticated ? <BooksIndex /> : <Navigate to="/login" replace />
+            } />
+            <Route path="/admin/books/create" element={
+                isAuthenticated ? <BooksCreate /> : <Navigate to="/login" replace />
+            } />
+            <Route path="/admin/books/edit/:id" element={
+                isAuthenticated ? <BooksEdit /> : <Navigate to="/login" replace />
             } />
         </Routes>
     );
