@@ -21,6 +21,11 @@ const logout = useLogout();
                     class="list-group-item list-group-item-action"
                     >Data User</router-link
                 >
+                <router-link
+                    to="/admin/books"
+                    class="list-group-item list-group-item-action"
+                    >Data Buku</router-link
+                >
                 <a
                     href="#"
                     @click="logout"

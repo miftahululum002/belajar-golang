@@ -16,58 +16,59 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/",
         name: "home",
-        component: () =>
-            import(/* webpackChunkName: "home" */ "../views/home/index.vue"),
+        component: () => import("../views/home/index.vue"),
     },
     {
         path: "/register",
         name: "register",
-        component: () =>
-            import(
-                /* webpackChunkName: "register" */ "../views/auth/register.vue"
-            ),
+        component: () => import("../views/auth/register.vue"),
     },
     {
         path: "/login",
         name: "login",
-        component: () =>
-            import(/* webpackChunkName: "login" */ "../views/auth/login.vue"),
+        component: () => import("../views/auth/login.vue"),
     },
     {
         path: "/admin/dashboard",
         name: "dashboard",
-        component: () =>
-            import(
-                /* webpackChunkName: "home" */ "../views/admin/dashboard/index.vue"
-            ),
-        meta: { requiresAuth: true }, // <-- Add meta field
+        component: () => import("../views/admin/dashboard/index.vue"),
+        meta: { requiresAuth: true },
     },
     {
         path: "/admin/users",
         name: "admin.users.index",
-        component: () =>
-            import(
-                /* webpackChunkName: "home" */ "../views/admin/users/index.vue"
-            ),
-        meta: { requiresAuth: true }, // <-- Add meta field
+        component: () => import("../views/admin/users/index.vue"),
+        meta: { requiresAuth: true },
     },
     {
         path: "/admin/users/create",
         name: "admin.users.create",
-        component: () =>
-            import(
-                /* webpackChunkName: "home" */ "../views/admin/users/create.vue"
-            ),
-        meta: { requiresAuth: true }, // <-- Add meta field
+        component: () => import("../views/admin/users/create.vue"),
+        meta: { requiresAuth: true },
     },
     {
         path: "/admin/users/edit/:id",
         name: "admin.users.edit",
-        component: () =>
-            import(
-                /* webpackChunkName: "home" */ "../views/admin/users/edit.vue"
-            ),
-        meta: { requiresAuth: true }, // <-- Add meta field
+        component: () => import("../views/admin/users/edit.vue"),
+        meta: { requiresAuth: true },
+    },
+    {
+        path: "/admin/books",
+        name: "admin.books.index",
+        component: () => import("../views/admin/books/index.vue"),
+        meta: { requiresAuth: true },
+    },
+    {
+        path: "/admin/books/create",
+        name: "admin.books.create",
+        component: () => import("../views/admin/books/create.vue"),
+        meta: { requiresAuth: true },
+    },
+    {
+        path: "/admin/books/edit/:id",
+        name: "admin.books.edit",
+        component: () => import("../views/admin/books/edit.vue"),
+        meta: { requiresAuth: true },
     },
 ];
 
