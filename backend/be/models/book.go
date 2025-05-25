@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-type Product struct {
+type Book struct {
 	Id        uint      `json:"id" gorm:"primaryKey"`
 	Title     string    `json:"title"`
 	Code      string    `json:"code" gorm:"unique;not null"`

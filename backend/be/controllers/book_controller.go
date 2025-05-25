@@ -10,26 +10,26 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func FindProducts(c *gin.Context) {
+func FindBooks(c *gin.Context) {
 
 	// Inisialisasi slice untuk menampung data user
-	var products []models.Product
+	var books []models.Book
 
 	// Ambil data user dari database
-	database.DB.Find(&products)
+	database.DB.Find(&books)
 
 	// Kirimkan response sukses dengan data user
 	c.JSON(http.StatusOK, structs.SuccessResponse{
 		Success: true,
-		Message: "Lists Data Products",
-		Data:    products,
+		Message: "Lists Data Books",
+		Data:    books,
 	})
 }
 
-func CreateProduct(c *gin.Context) {
+func CreateBook(c *gin.Context) {
 
 	//struct user request
-	var req = structs.ProductCreateRequest{}
+	var req = structs.BookCreateRequest{}
 
 	// Bind JSON request ke struct UserRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -42,7 +42,7 @@ func CreateProduct(c *gin.Context) {
 	}
 
 	// Inisialisasi user baru
-	product := models.Product{
+	book := models.Book{
 		Title:    req.Title,
 		Code:     req.Code,
 		Author:   req.Author,
@@ -51,10 +51,10 @@ func CreateProduct(c *gin.Context) {
 	}
 
 	// Simpan user ke database
-	if err := database.DB.Create(&product).Error; err != nil {
+	if err := database.DB.Create(&book).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, structs.ErrorResponse{
 			Success: false,
-			Message: "Failed to create product",
+			Message: "Failed to create book",
 			Errors:  helpers.TranslateErrorMessage(err),
 		})
 		return
@@ -64,30 +64,30 @@ func CreateProduct(c *gin.Context) {
 	c.JSON(http.StatusCreated, structs.SuccessResponse{
 		Success: true,
 		Message: "Data created successfully",
-		Data: structs.ProductResponse{
-			Id:        product.Id,
-			Title:     product.Title,
-			Code:      product.Code,
-			Author:    product.Author,
-			Year:      product.Year,
-			Synapsis:  product.Synapsis,
-			CreatedAt: product.CreatedAt.Format("2006-01-02 15:04:05"),
-			UpdatedAt: product.UpdatedAt.Format("2006-01-02 15:04:05"),
+		Data: structs.BookResponse{
+			Id:        book.Id,
+			Title:     book.Title,
+			Code:      book.Code,
+			Author:    book.Author,
+			Year:      book.Year,
+			Synapsis:  book.Synapsis,
+			CreatedAt: book.CreatedAt.Format("2006-01-02 15:04:05"),
+			UpdatedAt: book.UpdatedAt.Format("2006-01-02 15:04:05"),
 		},
 	})
 
 }
 
-func FindProductById(c *gin.Context) {
+func FindBookById(c *gin.Context) {
 
-	// Ambil ID user dari parameter URL
+	// Ambil ID object dari parameter URL
 	id := c.Param("id")
 
-	// Inisialisasi user
-	var product models.Product
+	// Inisialisasi object
+	var book models.Book
 
-	// Cari user berdasarkan ID
-	if err := database.DB.First(&product, id).Error; err != nil {
+	// Cari object berdasarkan ID
+	if err := database.DB.First(&book, id).Error; err != nil {
 		c.JSON(http.StatusNotFound, structs.ErrorResponse{
 			Success: false,
 			Message: "Data not found",
@@ -100,27 +100,27 @@ func FindProductById(c *gin.Context) {
 	c.JSON(http.StatusOK, structs.SuccessResponse{
 		Success: true,
 		Message: "Data Found",
-		Data: structs.ProductResponse{
-			Id:        product.Id,
-			Title:     product.Title,
-			Code:      product.Code,
-			Author:    product.Author,
-			Year:      product.Year,
-			Synapsis:  product.Synapsis,
-			CreatedAt: product.CreatedAt.Format("2006-01-02 15:04:05"),
-			UpdatedAt: product.UpdatedAt.Format("2006-01-02 15:04:05"),
+		Data: structs.BookResponse{
+			Id:        book.Id,
+			Title:     book.Title,
+			Code:      book.Code,
+			Author:    book.Author,
+			Year:      book.Year,
+			Synapsis:  book.Synapsis,
+			CreatedAt: book.CreatedAt.Format("2006-01-02 15:04:05"),
+			UpdatedAt: book.UpdatedAt.Format("2006-01-02 15:04:05"),
 		},
 	})
 
 }
 
-func UpdateProduct(c *gin.Context) {
+func UpdateBook(c *gin.Context) {
 
 	// Ambil ID dari parameter URL
 	id := c.Param("id")
 
 	// Inisialisasi object
-	var object models.Product
+	var object models.Book
 
 	// Cari user berdasarkan ID
 	if err := database.DB.First(&object, id).Error; err != nil {
@@ -133,7 +133,7 @@ func UpdateProduct(c *gin.Context) {
 	}
 
 	//struct user request
-	var req = structs.ProductUpdateRequest{}
+	var req = structs.BookUpdateRequest{}
 
 	// Bind JSON request ke struct UserRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -145,7 +145,7 @@ func UpdateProduct(c *gin.Context) {
 		return
 	}
 
-	// Update user dengan data baru
+	// Update object dengan data baru
 	object.Title = req.Title
 	object.Code = req.Code
 	object.Author = req.Author
@@ -166,7 +166,7 @@ func UpdateProduct(c *gin.Context) {
 	c.JSON(http.StatusOK, structs.SuccessResponse{
 		Success: true,
 		Message: "Data updated successfully",
-		Data: structs.ProductResponse{
+		Data: structs.BookResponse{
 			Id:        object.Id,
 			Title:     object.Title,
 			Code:      object.Code,
@@ -179,13 +179,13 @@ func UpdateProduct(c *gin.Context) {
 	})
 }
 
-func DeleteProduct(c *gin.Context) {
+func DeleteBook(c *gin.Context) {
 
-	// Ambil ID user dari parameter URL
+	// Ambil ID object dari parameter URL
 	id := c.Param("id")
 
 	// Inisialisasi user
-	var object models.Product
+	var object models.Book
 
 	// Cari user berdasarkan ID
 	if err := database.DB.First(&object, id).Error; err != nil {

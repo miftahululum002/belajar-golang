@@ -1,7 +1,7 @@
 package structs
 
 // Struct ini digunakan untuk menampilkan data sebagai response API
-type ProductResponse struct {
+type BookResponse struct {
 	Id        uint    `json:"id"`
 	Title     string  `json:"title"`
 	Code      string  `json:"code"`
@@ -14,7 +14,7 @@ type ProductResponse struct {
 }
 
 // Struct ini digunakan untuk menerima data saat proses create data
-type ProductCreateRequest struct {
+type BookCreateRequest struct {
 	Title    string `json:"title" binding:"required"`
 	Code     string `json:"code" binding:"required" gorm:"unique;not null"`
 	Author   string `json:"author,omitempty"`
@@ -23,7 +23,7 @@ type ProductCreateRequest struct {
 }
 
 // Struct ini digunakan untuk menerima data saat proses update data
-type ProductUpdateRequest struct {
+type BookUpdateRequest struct {
 	Title    string `json:"title" binding:"required"`
 	Code     string `json:"code" binding:"required" gorm:"unique;not null"`
 	Author   string `json:"author,omitempty"`
